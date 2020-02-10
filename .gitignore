@@ -1,0 +1,8 @@
+# kubernetes related
+ch00/eks.yaml
+  
+# terraform related
+**/.terraform
+*.tfstate
+*.tfstate.backup
+

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit if any of the intermediate steps fail
+set -e
+
 # ---------------------------------------------------------------------------------------------------------------------
 # Download all necessary binary file
 # ---------------------------------------------------------------------------------------------------------------------
@@ -21,7 +24,7 @@ chmod +x /tmp/eksctl
 sudo mv /tmp/eksctl /usr/local/bin
 echo 'eksctl Done.'
 
-curl --silent --location "https://github.com/txn2/kubefwd/releases/download/v1.11.1/kubefwd_linux_amd64.tar.gz" | tar xz -C /tmp
+curl --silent --location "https://github.com/txn2/kubefwd/releases/download/1.11.1/kubefwd_linux_amd64.tar.gz" | tar xz -C /tmp
 chmod +x /tmp/kubefwd
 sudo mv /tmp/kubefwd /usr/local/bin
 echo 'kubefwd Done.'
@@ -36,6 +39,7 @@ curl --silent -Lo terraform.zip https://releases.hashicorp.com/terraform/0.12.20
 unzip terraform.zip
 chmod +x terraform
 sudo mv terraform /usr/local/bin/
+rm terraform.zip
 echo 'terraform Done.'
 
 sudo apt-get install -y jq mysql-client
@@ -47,7 +51,7 @@ echo 'jq, mysql-client Done.'
 
 
 echo "Prepare EKS cluster ..."
-CLUSTER_NAME=cs${RANDOM}
+CLUSTER_NAME=container-security-${RANDOM}
 
 cat > eks.yaml << EOF
 apiVersion: eksctl.io/v1alpha5
