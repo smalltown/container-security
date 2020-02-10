@@ -9,6 +9,8 @@ set -e
 
 echo "Get binaries ..."
 
+cp -f ~/.bashrc ~/.bashrc.bak
+
 curl --silent -Lo kubectl curl -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/kubectl
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
@@ -36,7 +38,6 @@ chmod +x kubebox
 sudo mv kubebox /usr/local/bin
 echo 'kubebox Done.'
 
-
 curl --silent -Lo terraform.zip https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip
 unzip terraform.zip
 chmod +x terraform
@@ -53,11 +54,10 @@ sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
 
 git clone https://github.com/ahmetb/kubectx.git ~/.kubectx
 COMPDIR=$(pkg-config --variable=completionsdir bash-completion)
-ln -sf ~/.kubectx/completion/kubens.bash $COMPDIR/kubens
-ln -sf ~/.kubectx/completion/kubectx.bash $COMPDIR/kubectx
+sudo ln -sf ~/.kubectx/completion/kubens.bash $COMPDIR/kubens
+sudo ln -sf ~/.kubectx/completion/kubectx.bash $COMPDIR/kubectx
 
 cat << FOE >> ~/.bashrc
-
 
 #kubectx and kubens
 export PATH=~/.kubectx:\$PATH
@@ -65,22 +65,22 @@ FOE
 echo "kubectx Done. "
 
 git clone https://github.com/jonmosco/kube-ps1.git ~/.kube-ps1
+
 cat << FOE >> ~/.bashrc
 
 #kube-ps1
 function get_cluster_short()  {
-  echo "$1" | cut -d . -f1 | cut -d @ -f2
+  echo "\$1" | cut -d . -f1 | cut -d @ -f2
 }
 
 source ~/.kube-ps1/kube-ps1.sh
 KUBE_PS1_SEPARATOR=''
 KUBE_PS1_SYMBOL_COLOR=green
 KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
-PS1='\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)" 2>/dev/null) $ '
-PS1='$(kube_ps1) '$PS1
+PS1='\[\033[01;34m\]\W\[\033[00m\]\$(__git_ps1 " (%s)" 2>/dev/null) $ '
+PS1='\$(kube_ps1) '\$PS1
 FOE
 echo "kube-ps1 Done. "
-
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Prepare EKS cluster

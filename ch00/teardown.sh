@@ -3,6 +3,22 @@
 # Exit if any of the intermediate steps fail
 set -e
 
+# Remove binary files
+sudo rm -rf /usr/local/bin/kubectl
+sudo rm -rf /usr/local/bin/aws-iam-authenticator
+sudo rm -rf /usr/local/bin/eksctl
+sudo rm -rf /usr/local/bin/kubefwd
+sudo rm -rf /usr/local/bin/kubebox
+sudo rm -rf /usr/local/bin/terraform
+
+sudo rm -rf /opt/kubectx /usr/local/bin/kubectx /usr/local/bin/kubens ~/.kubectx
+COMPDIR=$(pkg-config --variable=completionsdir bash-completion)
+sudo rm -rf $COMPDIR/kubens $COMPDIR/kubectx
+sudo rm -rf ~/.kube-ps1
+sudo rm -rf ~/.kube/http-cache/ ~/.kube/cache
+
+cp -f ~/.bashrc.bak ~/.bashrc
+
 # Remove EKS cluster
 del=1
 
