@@ -16,10 +16,11 @@ script:
   #- git ls-files --exclude='Dockerfile*' --ignored | xargs --max-lines=1 hadolint
   # Build container image
   - docker build -f ch01/Dockerfile -t container-security:${COMMIT} .
-  # scan container image
+  # scan container image need to workaround for issue (https://github.com/aquasecurity/trivy/issues/198)
   - docker images
-  - trivy --exit-code 0 --severity HIGH --no-progress container-security:${COMMIT}
-  - trivy --exit-code 1 --severity CRITICAL --no-progress container-security:${COMMIT}
+  - docker save container-security:${COMMIT} -o container-security-${COMMIT}.tar
+  - trivy --exit-code 0 --severity HIGH --no-progress --input container-security-${COMMIT}.tar
+  - trivy --exit-code 1 --severity CRITICAL --no-progress --input container-security-${COMMIT}.tar
   
 cache:
   directories:
