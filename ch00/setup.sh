@@ -92,6 +92,16 @@ PS1='\$(kube_ps1) '\$PS1
 FOE
 echo "kube-ps1 Done. "
 
+
+cat > ~/.ssh/config << EOF
+ServerAliveInterval 120
+Host github.com
+    AddKeysToAgent yes
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa
+EOF
+
 # ---------------------------------------------------------------------------------------------------------------------
 # Prepare EKS cluster
 # ---------------------------------------------------------------------------------------------------------------------
