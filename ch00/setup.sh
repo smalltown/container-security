@@ -38,12 +38,22 @@ chmod +x kubebox
 sudo mv kubebox /usr/local/bin
 echo 'kubebox Done.'
 
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+echo 'helm Done.'
+
 curl --silent -Lo terraform.zip https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip
 unzip terraform.zip
 chmod +x terraform
 sudo mv terraform /usr/local/bin/
 rm terraform.zip
 echo 'terraform Done.'
+
+curl --silent -Lo vault.zip https://releases.hashicorp.com/vault/1.3.2/vault_1.3.2_linux_amd64.zip
+unzip vault.zip
+chmod +x vault
+sudo mv vault /usr/local/bin/
+rm vault.zip
+echo 'vault Done.'
 
 sudo apt-get install -y jq mysql-client
 echo 'jq, mysql-client Done.'
