@@ -1,6 +1,7 @@
 # kubernetes related
 ch00/eks.yaml
-  
+ch02/irsa/cluster-autoscaler-chart-values.yaml
+
 # terraform related
 **/.terraform
 *.tfstate

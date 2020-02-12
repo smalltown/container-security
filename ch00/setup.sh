@@ -98,7 +98,8 @@ echo "kube-ps1 Done. "
 
 
 echo "Prepare EKS cluster ..."
-CLUSTER_NAME=container-security-${RANDOM}
+ACOUNT_NAME=$(aws sts get-caller-identity | jq -r '.Arn' | cut -d '/'  -f2)
+CLUSTER_NAME=cs-${ACOUNT_NAME}-${RANDOM}
 
 cat > eks.yaml << EOF
 apiVersion: eksctl.io/v1alpha5

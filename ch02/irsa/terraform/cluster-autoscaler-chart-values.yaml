@@ -1,0 +1,10 @@
+awsRegion: us-west-2
+
+rbac:
+  create: true
+  serviceAccountAnnotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::386332122531:role/cluster-autoscaler-tom"
+
+autoDiscovery:
+  clusterName: container-security-7759
+  enabled: true
