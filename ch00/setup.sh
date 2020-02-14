@@ -55,6 +55,13 @@ sudo mv vault /usr/local/bin/
 rm vault.zip
 echo 'vault Done.'
 
+
+
+curl --silent -Lo opa https://github.com/open-policy-agent/opa/releases/download/v0.17.1/opa_linux_amd64
+chmod +x opa
+sudo mv opa /usr/local/bin
+echo 'opa Done.'
+
 sudo apt-get install -y jq mysql-client
 echo 'jq, mysql-client Done.'
 

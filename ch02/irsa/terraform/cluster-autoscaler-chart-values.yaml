@@ -6,5 +6,5 @@ rbac:
     eks.amazonaws.com/role-arn: "arn:aws:iam::386332122531:role/cluster-autoscaler-tom"
 
 autoDiscovery:
-  clusterName: container-security-7759
+  clusterName: cs-tom-22494
   enabled: true

@@ -8,7 +8,7 @@ export AWS_DEFAULT_OUTPUT="json"
 ACCOUNT_NAME=$(aws sts get-caller-identity | jq -r .Arn | cut -d '/'  -f2)
 ACCOUNT_ID=$(aws sts get-caller-identity | jq -r .Account)
 ROLE_NAME=cluster-autoscaler-${ACCOUNT_NAME}
-CLUSTER_NAME=$(aws eks list-clusters | jq -r '.clusters[]' | grep cs-${ACCOUND_NAME}- | head -1)
+CLUSTER_NAME=$(aws eks list-clusters | jq -r '.clusters[]' | grep cs-${ACCOUNT_NAME}- | head -1)
 
 cat > cluster-autoscaler-chart-values.yaml << EOF
 awsRegion: us-west-2

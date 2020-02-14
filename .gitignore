@@ -7,3 +7,11 @@ ch02/irsa/cluster-autoscaler-chart-values.yaml
 *.tfstate
 *.tfstate.backup
 
+# opa kubernetes related
+webhook-configuration.yaml
+ca.crt
+ca.key
+ca.srl
+server.crt
+server.csr
+server.key
