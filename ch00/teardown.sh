@@ -27,6 +27,7 @@ sudo rm -rf /usr/local/bin/eksctl
 sudo rm -rf /usr/local/bin/kubefwd
 sudo rm -rf /usr/local/bin/kubebox
 sudo rm -rf /usr/local/bin/terraform
+sudo rm -rf /usr/local/bin/opa
 
 sudo rm -rf /opt/kubectx /usr/local/bin/kubectx /usr/local/bin/kubens ~/.kubectx
 COMPDIR=$(pkg-config --variable=completionsdir bash-completion)
